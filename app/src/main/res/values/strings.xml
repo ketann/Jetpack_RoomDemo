@@ -3,6 +3,10 @@
     <string name="save">Save</string>
     <string name="add_note">Add Note</string>
     <string name="saved">Note Saved</string>
+    <string name="updated">Note Updated</string>
     <string name="note_saved">Couldn\'t Save</string>
     <string name="no_note">No notes</string>
+    <string name="update_note">Update Note</string>
+    <string name="update">Update</string>
+    <string name="cancel">Cancel</string>
 </resources>

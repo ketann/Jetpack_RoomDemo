@@ -46,47 +46,52 @@ public class NoteViewModel extends AndroidViewModel {
         Log.i(TAG, "ViewModel Destroyed");
     }
 
-    private class InsertAsyncTask extends AsyncTask<Note, Void, Void> {
+    private class OperationalAsyncTask extends AsyncTask<Note, Void, Void> {
+        NoteDao mAsyncTaskDao;
 
-        NoteDao mNoteDao;
+        public OperationalAsyncTask(NoteDao dao) {
+            this.mAsyncTaskDao = dao;
+        }
 
+        @Override
+        protected Void doInBackground(Note... notes) {
+            return null;
+        }
+    }
+
+    private class InsertAsyncTask extends OperationalAsyncTask {
         public InsertAsyncTask(NoteDao noteDao) {
-            this.mNoteDao = noteDao;
+            super(noteDao);
         }
 
         @Override
         protected Void doInBackground(Note... notes) {
-            mNoteDao.insert(notes[0]);
+            mAsyncTaskDao.insert(notes[0]);
             return null;
         }
 
     }
 
-    private class UpdateAsyncTask extends AsyncTask<Note, Void, Void> {
-
-        NoteDao mNoteDao;
-
+    private class UpdateAsyncTask extends OperationalAsyncTask {
         public UpdateAsyncTask(NoteDao noteDao) {
-            this.mNoteDao = noteDao;
+            super(noteDao);
         }
 
         @Override
         protected Void doInBackground(Note... notes) {
-            mNoteDao.update(notes[0]);
+            mAsyncTaskDao.update(notes[0]);
             return null;
         }
     }
 
-    private class DeleteAsyncTask extends AsyncTask<Note, Void, Void> {
-        NoteDao mNoteDao;
-
+    private class DeleteAsyncTask extends OperationalAsyncTask {
         public DeleteAsyncTask(NoteDao noteDao) {
-            this.mNoteDao = noteDao;
+            super(noteDao);
         }
 
         @Override
         protected Void doInBackground(Note... notes) {
-            mNoteDao.delete(notes[0]);
+            mAsyncTaskDao.delete(notes[0]);
             return null;
         }
     }
